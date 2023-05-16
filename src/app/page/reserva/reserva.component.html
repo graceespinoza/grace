@@ -6,12 +6,17 @@
         </div>
 
         <div id="tabla-formulario">
-            <label for="tipo">Tipo</label>
-            <input placeholder="Ingrese su Tipo..." formControlName="tipo" type="text" id="tabla1">
+            <label for="tipo">Tipo de Rerserva</label>
+            <select  aria-label="inmub" formControlName="inmueble" id="tabla"> Descripcion
+                <option >Alquiler        </option>
+                <option >Venta        </option>
+            </select>
+           
 
             <label for="estado">Estado </label>
             <select  aria-label="estado" formControlName="estado" id="tabla">Estado
                 <option> Disponible</option> 
+                <option> Reservado</option> 
             </select> 
 
 
@@ -24,9 +29,15 @@
 
             <label for="inmub">Tipo de Inmueble </label>
             <select  aria-label="inmub" formControlName="inmueble" id="tabla"> Descripcion
-                <option [ngValue]="item" *ngFor="let item of reserva" 
-                [selected]="pokemonSelect?.inmueble?.id_inmueble == item.id_inmueble" id="tabla">
-                        {{item.tipo_inmueble}}
+                <option [ngValue]="item" *ngFor="let item of inmub">
+                        {{item.tipo_inmuble}}
+                </option>
+            </select>
+
+            <label for="inmub">Nombre </label>
+            <select  aria-label="inmub" formControlName="inmueble" id="tabla"> Descripcion
+                <option [ngValue]="item" *ngFor="let item of isua">
+                        {{item.nombre}}
                 </option>
             </select>
 

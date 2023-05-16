@@ -1,53 +1,4 @@
-<div class="container" style="width: 100%; margin: 0; display: flex; flex-direction: column;">
-
-
-<div class="nav-i">
-    <nav class=" navbar-light" style="background-color: #350133;">
-       
-       <h1>Inmueble</h1>
-   </nav>
-</div>
-
-<div class="table-t">
-
-    <form [formGroup]="inmubsd" (ngSubmit)="REGISTRAR($event)" method="POST">
-        <div id="formulario">
-            <h1> Formulario de inmueble </h1>
-        </div>
-
-        <div id="tabla-formulario">
-            <label for="nombre">Nombres</label>
-            <input placeholder="Ingrese su nombre..." formControlName="nombre" type="text" id="tabla1">
-
-            <label for="direccion">Direccion </label>
-            <input placeholder="Escriba Direccion" formControlName="direccion" type="text" id="tabla2">
-
-            <label for="precio">Precio </label>
-            <input placeholder="Escriba precio" formControlName="precio" type="number" id="tabla3">
-
-          
-            <label for="tipo_inmuble">Tipo_inmueble </label>
-            <input placeholder="Escriba Tipo de inmueble" formControlName="tipo_inmuble" type="text" id="tabla5">
-
-            <!-- <label for="descripcion">Usuarios </label>
-            <select  aria-label="usuarios" formControlName="usuarios" id="tabla"> Descripcion
-                <option [ngValue]="item" *ngFor="let item of usuarios" 
-                [selected]="pokemonSelect?.usuarios?.codigo == item.codigo" id="tabla">
-                        {{item.codigo}}
-                </option>
-            </select> -->
-
-        </div>
-        <button name="registro" type="submit" class="btn btn-danger btn-sm m-2"  id="button"> ¡Registrarse! </button>
-
-        
-    </form>
-</div>
-
-
-
-
-<h1>Listado de POKEMONES</h1>
+<h2>Listado de Inmueble</h2>
     <table class="listado">
         <thead>
             <tr>
@@ -70,13 +21,11 @@
                  <td>{{item.usuarios}}</td> 
                 <td></td>
                 <td>
-                    <button type="button" (click)="delete(item)" class="btn btn-danger btn-sm m-2">ELIMINAR</button>
+                    <button type="button" (click)="delete(item)" class="bi bi-trash3-fill">ELIMINAR</button>
                  
                   </td>
-            
+                  <td class="icono"><a href="#"><span class="bi bi-trash3-fillbi bi-trash3-fill"></span></a></td>	
+
         </tbody>
         
-    </table>
- 
-    
-</div>
+  

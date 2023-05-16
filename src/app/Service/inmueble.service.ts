@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-
+import {Observable} from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class InmuebleService {
 
-  private APIS = "http://localhost:8080/inmueble";
+  private APIS = "http://localhost:8080/inmuebles";
 
   constructor(
     private httpClient:  HttpClient
@@ -18,9 +16,10 @@ export class InmuebleService {
     return this.httpClient.get(this.APIS);
     }
    
-    public save(add: any): Observable<any>{
+    public save(add: any): Observable<any>{ 
+      console.log(add)
       debugger
-      return this.httpClient.post(this.APIS + "/add", add);
+      return this.httpClient.post(this.APIS + "/add" ,add);
     }
   
     public update(id: any): Observable<any>{
@@ -34,6 +33,4 @@ export class InmuebleService {
       return this.httpClient.delete(this.APIS +"/" + encodeURIComponent(id));
       
       }
-    
-  
 }

@@ -10,17 +10,20 @@ import { UsuariosComponent } from './page/usuarios/usuarios.component';
 import { SignupComponent } from './page/signup/signup.component';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { InmuebleComponent } from './page/inmueble/inmueble.component';
 import { NavComponent } from './page/nav/nav.component';
+import { RegistrarComponent } from './page/registrar/registrar.component';
+import { InmuebleComponent } from './page/inmueble/inmueble.component';
 import { ReservaComponent } from './page/reserva/reserva.component';
 @NgModule({
   declarations: [
     AppComponent,
-    InmuebleComponent,
+    
     ReservaComponent,
     UsuariosComponent,
     SignupComponent,
-    NavComponent
+    NavComponent,
+    RegistrarComponent,
+    InmuebleComponent
     
   ],
   imports: [

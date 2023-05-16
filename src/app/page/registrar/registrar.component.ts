@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
-import { Inmueble } from '../../Model/Inmueble';
 import { Usuarios } from 'src/app/Model/Usuarios';
-import { UsuarioServiceService } from 'src/app/Service/usuario-service.service';
+import { Inmueble } from '../../Model/Inmueble';
 import { InmuebleService } from 'src/app/Service/inmueble.service';
-@Component({
-  selector: 'app-inmueble',
-  templateUrl: './inmueble.component.html',
-  styleUrls: ['./inmueble.component.css']
-})
+import { UsuarioServiceService } from 'src/app/Service/usuario-service.service';
 
-export class InmuebleComponent implements OnInit {
+@Component({
+  selector: 'app-registrar',
+  templateUrl: './registrar.component.html',
+  styleUrls: ['./registrar.component.css']
+})
+export class RegistrarComponent implements OnInit{
+
   pokemonSelect?: any;
-  inmubsd!: FormGroup;
+  inmuForm!: FormGroup;
   usuarios: Usuarios[] = [];
   poke: any;
 
 
   constructor(
     public fb: FormBuilder,
-    public inmSer: InmuebleService,
+    public inmuebleService: InmuebleService,
     private router: Router,
     public usuariServi: UsuarioServiceService
   ) {
     this.cargarCategorias();
   }
   ngOnInit(): void {
-    this.inmubsd = this.fb.group({
+    this.inmuForm = this.fb.group({
       id_inmueble: ['', Validators.required],
       nombre: ['', Validators.required],
       direccion: ['', Validators.required],
@@ -35,7 +36,8 @@ export class InmuebleComponent implements OnInit {
       tipo_inmuble: ['', Validators.required],
       usuarios: ['', Validators.required],
     });;
-    this.inmSer.obtener().subscribe(resp => {
+    
+    this.inmuebleService.obtener().subscribe(resp => {
       this.poke = resp;
       console.log(resp);
     },
@@ -55,41 +57,23 @@ export class InmuebleComponent implements OnInit {
 
 
 
-  REGISTRAR(event: Event): void {
+  guardar(event: Event): void {
     event.preventDefault();
-    const inmu: Inmueble = this.inmubsd.value;
-    this.inmSer.save(this.inmubsd.value).subscribe(resp => {
-      this.inmubsd.reset();
+    debugger
+    const inmu: Inmueble = this.inmuForm.value;
+    debugger
+    this.inmuebleService.save(this.inmuForm.value).subscribe(resp =>{
+      debugger
+      this.inmuForm.reset();
+      debugger
       this.poke.push(resp);
+    
     },
       error => {
         console.error(error)
-      }
-    )
+      });
   }
 
 
-  update(usuar: any) {
-    this.inmubsd.patchValue({
-      id_inmueble: usuar.id_inmueble,
-      nombre: usuar.nombre,
-      direccion: usuar.direccion,
-      precio: usuar.precio,
-      tipo_inmueble: usuar.tipo_inmueble,
-      usuarios: usuar.usuarios
-
-    })
-    this.pokemonSelect = usuar;
-    console.log("pokemonSelect", this.pokemonSelect);
-
-  }
-  delete(usuar: any) {
-    this.inmSer.delete(usuar.id_inmueble).subscribe(resp => {
-      console.log(resp)
-      if (resp === true) {
-        this.poke.pop(usuar)
-      }
-    })
-  }
 
 }

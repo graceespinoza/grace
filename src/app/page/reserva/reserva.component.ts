@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Inmueble } from 'src/app/Model/Inmueble';
 import { Reserva } from 'src/app/Model/Reserva';
+import { Usuarios } from 'src/app/Model/Usuarios';
 import { InmuebleService } from 'src/app/Service/inmueble.service';
 import { ReservaService } from 'src/app/Service/reserva.service';
 
@@ -15,6 +16,7 @@ export class ReservaComponent implements OnInit {
 
   reserForm!: FormGroup;
   inmub:Inmueble[]=[];
+  isua:Usuarios[]=[];
   reserva:any;
   pokemonSelect?:any;
 
@@ -56,13 +58,10 @@ export class ReservaComponent implements OnInit {
 
     guardar(event: Event): void {
       event.preventDefault();
-      const pokemon : Reserva = this.reserForm.value;
+      const rese : Reserva = this.reserForm.value;
       this.reseSer.save(this.reserForm.value).subscribe(resp => {
       this.reserForm.reset();
-      this.reserva=this.reserva.filter((pokemon: { id_reserva: any; }) => {
-        return resp.id_reserva !== pokemon.id_reserva;
-      });
-      this.reserva.push(resp);
+     
       },
         error => {
           console.error(error)
