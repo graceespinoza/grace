@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
+import { FormBuilder, FormGroup ,Validators,FormControl} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Inmueble } from 'src/app/Model/Inmueble';
 import { Reserva } from 'src/app/Model/Reserva';
-import { Usuarios } from 'src/app/Model/Usuarios';
 import { InmuebleService } from 'src/app/Service/inmueble.service';
 import { ReservaService } from 'src/app/Service/reserva.service';
+
 
 @Component({
   selector: 'app-reserva',
@@ -14,39 +14,37 @@ import { ReservaService } from 'src/app/Service/reserva.service';
 })
 export class ReservaComponent implements OnInit {
 
-  reserForm!: FormGroup;
   inmub:Inmueble[]=[];
-  isua:Usuarios[]=[];
-  reserva:any;
-  pokemonSelect?:any;
 
+  poke:any;
+  pokemonSelect?:any;
+  reserForm = new FormGroup({
+  
+    tipo: new FormControl ('', [Validators.required]),
+    estado: new FormControl ('', [Validators.required]),
+    hora: new FormControl ('', [Validators.required]),
+    fecha: new FormControl ('', [Validators.required]),
+    inmueble: new FormControl ('', [Validators.required]),
+    usuario: new FormControl('', [Validators.required]),
+  });
+
+      tipo:string="";
+      estado:string="";
+      hora:string="";
+      fecha:string="";
+      inmueble:string="";
+      usuario:string="";
   constructor(
-    public fb: FormBuilder,
+ 
     public reseSer: ReservaService,
     private router: Router,
     public inmSer: InmuebleService,
    
-  ) {}
+  ) {this.cargarCategorias()}
+   
 
     ngOnInit(): void {
-      this.reserForm = this.fb.group({
-        id_reserva: ['', Validators.required],
-        tipo: ['', Validators.required],
-        estado: ['', Validators.required],
-        hora: ['', Validators.required],
-        fecha: ['', Validators.required],
-        inmueble: ['', Validators.required],
-        usuario: ['', Validators.required],
-      });;
-      this.reseSer.obtener().subscribe(resp => {
-        this.reserva = resp;
-        console.log(resp);
-      },
-        error => { 
-          console.error(error);
-         }
-  
-      )
+     
     }
     cargarCategorias() {
       this.inmSer.obtener().subscribe(resp => {
@@ -55,17 +53,25 @@ export class ReservaComponent implements OnInit {
         console.error(error)
       })
     }
+   
 
     guardar(event: Event): void {
       event.preventDefault();
-      const rese : Reserva = this.reserForm.value;
-      this.reseSer.save(this.reserForm.value).subscribe(resp => {
-      this.reserForm.reset();
-     
+    
+      const rese = this.reserForm.value;
+      debugger
+      console.log(this.reserForm.value);
+      debugger  
+      this.reseSer.save(this.reserForm.value).subscribe(resp=>{
+        debugger 
+        this.reserForm.reset();
+        
       },
-        error => {
-          console.error(error)
-        }
+      error =>{
+        console.error(error);
+      }
+      
+     
       )
     }
 
@@ -73,7 +79,7 @@ export class ReservaComponent implements OnInit {
   update(rese:any){
     this.reserForm.patchValue({
 
-      id_reserva: rese.id_reserva,
+     
       tipo: rese.tipo,
       estado: rese.estado,
       hora: rese.hora,
@@ -91,7 +97,7 @@ export class ReservaComponent implements OnInit {
      this.reseSer.delete(rese.id_reserva).subscribe(resp => {
        console.log(resp)
        if (resp === true) {
-         this.reserva.pop(rese)
+         this.poke.pop(rese)
        }
      })
    }

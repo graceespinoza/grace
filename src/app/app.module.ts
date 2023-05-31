@@ -14,6 +14,10 @@ import { NavComponent } from './page/nav/nav.component';
 import { RegistrarComponent } from './page/registrar/registrar.component';
 import { InmuebleComponent } from './page/inmueble/inmueble.component';
 import { ReservaComponent } from './page/reserva/reserva.component';
+import { UserComponent } from './principal/user/user.component';
+import { AsesorComponent } from './page/asesor/asesor.component';
+import { ListadoAsesorComponent } from './page/listado-asesor/listado-asesor.component';
+import { ListadoComponent } from './listado/listado.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +27,12 @@ import { ReservaComponent } from './page/reserva/reserva.component';
     SignupComponent,
     NavComponent,
     RegistrarComponent,
-    InmuebleComponent
+    InmuebleComponent,
+    UserComponent,
+    AsesorComponent,
+    ListadoAsesorComponent,
+    ListadoComponent,
+    
     
   ],
   imports: [

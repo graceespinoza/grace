@@ -7,7 +7,7 @@
 
         <div id="tabla-formulario">
             <label for="tipo">Tipo de Rerserva</label>
-            <select  aria-label="inmub" formControlName="inmueble" id="tabla"> Descripcion
+            <select  aria-label="inmub" formControlName="tipo" id="tabla"> Descripcion
                 <option >Alquiler        </option>
                 <option >Venta        </option>
             </select>
@@ -27,16 +27,16 @@
             <label for="fecha">Fecha </label>
             <input placeholder="Escriba Tipo de inmueble" formControlName="fecha" type="date" id="tabla5">
 
-            <label for="inmub">Tipo de Inmueble </label>
-            <select  aria-label="inmub" formControlName="inmueble" id="tabla"> Descripcion
+            <label for="inmueble">Tipo de Inmueble </label>
+            <select  aria-label="inmueble" formControlName="inmueble" id="tabla"> Tipo de Inmueble
                 <option [ngValue]="item" *ngFor="let item of inmub">
                         {{item.tipo_inmuble}}
                 </option>
             </select>
 
-            <label for="inmub">Nombre </label>
-            <select  aria-label="inmub" formControlName="inmueble" id="tabla"> Descripcion
-                <option [ngValue]="item" *ngFor="let item of isua">
+            <label for="usuario">Nombre de Inmueble </label>
+            <select  aria-label="usuario" formControlName="usuario" id="tabla"> Nombre de Inmueble
+                <option [ngValue]="item" *ngFor="let item of inmub">
                         {{item.nombre}}
                 </option>
             </select>

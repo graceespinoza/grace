@@ -6,5 +6,6 @@ export interface Inmueble{
     direccion:string,
     precio: number,
     tipo_inmuble: string,
+    estado:string,
     usuarios:Usuarios
 }

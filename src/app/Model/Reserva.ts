@@ -8,6 +8,6 @@ export interface Reserva{
     hora: string,
     fecha:Date,
     inmueble: Inmueble,
-    usuarios: Usuarios
+    usuario: Usuarios
 
 }

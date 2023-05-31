@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, NgForm, Validators  } from '@angular/forms';import { Usuarios } from 'src/app/Model/Usuarios';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsuarioServiceService } from 'src/app/Service/usuario-service.service';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-usuarios',
-  templateUrl: './usuarios.component.html',
-  styleUrls: ['./usuarios.component.css']
+  selector: 'app-asesor',
+  templateUrl: './asesor.component.html',
+  styleUrls: ['./asesor.component.css']
 })
-export class UsuariosComponent implements OnInit {
-
+export class AsesorComponent implements OnInit
+{
   pokemonSelect?:any;
  
   poke: any;
@@ -17,12 +16,7 @@ export class UsuariosComponent implements OnInit {
   
     nombre: new FormControl('', [Validators.required]),
     celular: new FormControl('',[Validators.required]),
-    cedula: new FormControl('', [Validators.required]),
-    direccion: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required]),
-
-    rol: new FormControl('', [Validators.required]),
-
     contrasena: new FormControl('', [Validators.required]),
 
   });
@@ -62,8 +56,7 @@ export class UsuariosComponent implements OnInit {
         error => {
           console.error(error)
         });
-        
-  
+      
 }
   
   

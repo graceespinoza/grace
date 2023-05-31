@@ -28,7 +28,7 @@ export class UsuarioServiceService {
     
     public delete(id: any): Observable<any>{
       debugger
-      return this.httpClient.delete(this.APIS +"/" + encodeURIComponent(id));
+      return this.httpClient.delete(this.APIS +"/" + id);
       
       }
     

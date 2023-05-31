@@ -15,7 +15,7 @@ export class InmuebleComponent implements OnInit {
   pokemonSelect?: any;
   inmubsd!: FormGroup;
   usuarios: Usuarios[] = [];
-  poke: any;
+  poke?: any;
 
 
   constructor(
@@ -26,17 +26,21 @@ export class InmuebleComponent implements OnInit {
   ) {
     this.cargarCategorias();
   }
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.inmubsd = this.fb.group({
       id_inmueble: ['', Validators.required],
       nombre: ['', Validators.required],
       direccion: ['', Validators.required],
       precio: ['', Validators.required],
-      tipo_inmuble: ['', Validators.required],
+      estado: ['', Validators.required],
+      tipo_inmuble: ['', Validators.required],     
       usuarios: ['', Validators.required],
-    });;
-    this.inmSer.obtener().subscribe(resp => {
+    });
+   
+    await this.inmSer.obtener().subscribe(resp => {
+      debugger
       this.poke = resp;
+
       console.log(resp);
     },
       error => {
@@ -47,13 +51,13 @@ export class InmuebleComponent implements OnInit {
   }
   cargarCategorias() {
     this.usuariServi.obtener().subscribe(resp => {
+      
       this.usuarios = resp;
+      console.log(resp)
     }, error => {
       console.error(error)
     })
   }
-
-
 
   REGISTRAR(event: Event): void {
     event.preventDefault();
@@ -75,6 +79,7 @@ export class InmuebleComponent implements OnInit {
       nombre: usuar.nombre,
       direccion: usuar.direccion,
       precio: usuar.precio,
+      estado:usuar.estado,
       tipo_inmueble: usuar.tipo_inmueble,
       usuarios: usuar.usuarios
 

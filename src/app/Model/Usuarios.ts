@@ -6,5 +6,6 @@ export interface Usuarios{
     cedula:number,
     direccion:string,
     email:string,
-    correo:string
+    rol:string,
+    contrasena:string,
 }
